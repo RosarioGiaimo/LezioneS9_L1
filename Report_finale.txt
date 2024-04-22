@@ -1,13 +1,8 @@
-Dopo aver confrontato i due report di scansione, possiamo notare le seguenti differenze:
+L'output di Nmap mostra che ho eseguito due scansioni su un host con l'indirizzo IP 192.168.240.150, una senza firewall e una con firewall. In entrambe le scansioni, Nmap ha rilevato che tutti le 1000 porte TCP scansionate sono in uno stato "filtered", il che significa che non ha ricevuto alcuna risposta da quelle porte.
 
-1. Prima scansione (senza Firewall attivo):
-   - Il servizio "Microsoft Windows RPC" sulla porta 135/tcp è stato rilevato come aperto.
-   - È stata rilevata una latenza leggermente più alta (0.00068s) rispetto alla seconda scansione.
+Inoltre, in una delle scansioni, è stata rilevata una porta specifica:
 
-2. Seconda scansione (con Firewall attivo):
-   - Il servizio "Microsoft Windows RPC" sulla porta 135/tcp non è stato rilevato come aperto.
-   - La latenza è leggermente più bassa (0.00042s) rispetto alla prima scansione.
+Nella prima scansione (senza firewall), è stata trovata la porta 143/tcp come "closed imap". Questo significa che la porta 143 è stata trovata ma è chiusa e utilizzata per il servizio IMAP.
+Invece, nella seconda scansione (con firewall), non è stata trovata alcuna porta specifica oltre a quelle in uno stato "filtered".
 
-Motivazione delle differenze:
-- La presenza del servizio "Microsoft Windows RPC" nella prima scansione e la sua assenza nella seconda indicano che il Firewall attivo sulla macchina Windows XP potrebbe aver bloccato o filtrato il traffico associato a questo servizio. Il Firewall può essere configurato per bloccare le richieste RPC in entrata, limitando la visibilità di questo servizio.
-- La variazione minima nella latenza potrebbe essere dovuta a variazioni casuali nella rete o alla gestione delle risorse di sistema durante le scansioni, ma non è direttamente correlata all'impatto del Firewall.
+Questo significa che il firewall è configurato per non rispondere alle richieste di scansione delle porte, nascondendo così le informazioni sulle porte aperte o chiuse. 
