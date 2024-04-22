@@ -1,0 +1,13 @@
+Dopo aver confrontato i due report di scansione, possiamo notare le seguenti differenze:
+
+1. Prima scansione (senza Firewall attivo):
+   - Il servizio "Microsoft Windows RPC" sulla porta 135/tcp è stato rilevato come aperto.
+   - È stata rilevata una latenza leggermente più alta (0.00068s) rispetto alla seconda scansione.
+
+2. Seconda scansione (con Firewall attivo):
+   - Il servizio "Microsoft Windows RPC" sulla porta 135/tcp non è stato rilevato come aperto.
+   - La latenza è leggermente più bassa (0.00042s) rispetto alla prima scansione.
+
+Motivazione delle differenze:
+- La presenza del servizio "Microsoft Windows RPC" nella prima scansione e la sua assenza nella seconda indicano che il Firewall attivo sulla macchina Windows XP potrebbe aver bloccato o filtrato il traffico associato a questo servizio. Il Firewall può essere configurato per bloccare le richieste RPC in entrata, limitando la visibilità di questo servizio.
+- La variazione minima nella latenza potrebbe essere dovuta a variazioni casuali nella rete o alla gestione delle risorse di sistema durante le scansioni, ma non è direttamente correlata all'impatto del Firewall.
